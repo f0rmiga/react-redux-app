@@ -95,7 +95,7 @@ export default function coreConfig(options) {
       includeManifest: 'manifest'
     })),
     plugin(new HtmlWebpackPlugin({
-      template: './src/src/index.html'
+      template: './src/index.html'
     }))
   )
 }
