@@ -1,5 +1,6 @@
-import * as React from 'react';
-import LinkItem from './LinkItem.react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import LinkItem from './LinkItem.react.jsx';
 
 function App(props) {
   return (
@@ -17,5 +18,13 @@ function App(props) {
     </div>
   );
 }
+
+App.propTypes = {
+  children: PropTypes.object
+};
+
+App.defaultProps = {
+  children: {}
+};
 
 export default App;
