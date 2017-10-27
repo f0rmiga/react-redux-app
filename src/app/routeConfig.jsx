@@ -1,10 +1,7 @@
 import React from 'react';
 
-import App from './client/components/App.react';
-
-const Foo = ({ props }) => (
-  <div>foo</div>
-);
+import App from './client/components/App.react.jsx';
+import Foo from './client/components/Foo.react.jsx';
 
 export default [
   {
@@ -16,7 +13,7 @@ export default [
       },
       {
         path: 'foo',
-        getComponent: Foo,
+        Component: Foo,
       },
     ],
   },
