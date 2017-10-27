@@ -21,7 +21,7 @@ export default function coreConfig(options) {
       fs: 'empty'
     }),
     loader({
-      test: /\.js$/,
+      test: /\.js|\.jsx$/,
       exclude: /(node_modules)/,
       use: [{
         loader: 'babel-loader'
