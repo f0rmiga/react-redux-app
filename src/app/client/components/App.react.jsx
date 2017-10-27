@@ -1,19 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import LinkItem from './LinkItem.react.jsx';
+
+import Menu from './Menu.react.jsx';
 
 function App(props) {
   return (
     <div>
-      <h1>SVZ</h1>
-      <ul>
-        <LinkItem to="/">
-          Main
-        </LinkItem>
-        <LinkItem to="/foo">
-          foo
-        </LinkItem>
-      </ul>
+      <Menu />
+
       {props.children}
     </div>
   );
