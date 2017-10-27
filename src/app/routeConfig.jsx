@@ -1,20 +1,29 @@
-import React from 'react';
-
+import Redirect from 'found/lib/Redirect';
 import App from './client/components/App.react.jsx';
-import Foo from './client/components/Foo.react.jsx';
+import Messages from './client/components/Messages.react.jsx';
+import NewMessage from './client/components/NewMessage.react.jsx';
 
 export default [
   {
     path: '/',
     Component: App,
     children: [
+      new Redirect({
+        from: '',
+        to: '/messages/1',
+      }),
+      new Redirect({
+        from: 'messages',
+        to: '/messages/1',
+      }),
       {
-        Component: () => <div>Main</div>,
+        path: 'messages/:page',
+        Component: Messages,
       },
       {
-        path: 'foo',
-        Component: Foo,
-      },
-    ],
-  },
+        path: 'newmessage',
+        Component: NewMessage,
+      }
+    ]
+  }
 ];
