@@ -28,7 +28,7 @@ export default function coreConfig(options) {
       }]
     }),
     loader({
-      test: /\.scss$/i,
+      test: /\.scss|\.css$/i,
       loader: ExtractTextPlugin.extract({
         fallback: 'style-loader',
         use: [
