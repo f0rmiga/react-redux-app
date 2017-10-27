@@ -15,7 +15,7 @@ export default function coreConfig(options) {
   return flowRight(
     partials.context(options.context),
     partials.entry({
-      main: ['babel-polyfill', './src/app/client/index.js']
+      main: ['babel-polyfill', './src/app/client/index.jsx']
     }),
     partials.node({
       fs: 'empty'
