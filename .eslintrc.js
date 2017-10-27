@@ -7,9 +7,12 @@ module.exports = {
     sourceType: 'module'
   },
   env: {
-    node: true
+    browser: true
   },
-  extends: 'airbnb-base',
+  plugins: [
+    'react'
+  ],
+  extends: 'airbnb',
   rules: {
     'max-len': ['warn', 240],
     'no-bitwise': 'off',
@@ -27,6 +30,7 @@ module.exports = {
     'no-mixed-operators': 'off',
     'no-prototype-builtins': 'off',
     'no-underscore-dangle': 'off',
-    'no-console': 'off'
+    'no-console': 'off',
+    'react/forbid-prop-types': 'off'
   }
 };
