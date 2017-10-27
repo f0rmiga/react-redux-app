@@ -5,9 +5,12 @@
 * clone the repository
 
 * install dependencies with yarn:
-
 ```
 $ yarn
+```
+
+* run the project
+```
 $ yarn run start
 ```
 
@@ -20,3 +23,9 @@ This application uses [React][1] as our view layer with [Redux][2] for state man
 [2]:http://redux.js.org/docs/introduction/
 
 [3]:https://github.com/4Catalyzer/found
+
+## To run the linter
+
+```
+$ yarn run lint
+```
