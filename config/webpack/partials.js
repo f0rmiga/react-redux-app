@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import curry from 'lodash.curry';
 import {
   mergeStringIntoConfig,
