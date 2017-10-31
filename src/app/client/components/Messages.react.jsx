@@ -31,11 +31,10 @@ class Messages extends React.Component {
     this.next = this.next.bind(this);
   }
 
-  async componentDidMount() {
-    try {
-      await this.fetchMessages();
-    } catch (e) {
-      window.alert('Failed fetching messages');
+  componentDidMount() {
+    this.fetchMessages();
+  }
+
   componentWillUpdate(nextProps, nextState) {
     if (nextState.isLoading) {
       NProgress.start();
@@ -45,39 +44,40 @@ class Messages extends React.Component {
   }
 
   async fetchMessages(url) {
-    const {
-      data: {
-        results: messages,
-        next,
-        previous
-      }
-    } = await axios.get(url || this.state.current);
-
     this.setState({
-      messages,
-      next,
-      previous
       isLoading: true
     });
+
+    try {
+      const {
+        data: {
+          results: messages,
+          next,
+          previous
+        }
+      } = await axios.get(url || this.state.current);
+
+      this.setState({
+        isLoading: false,
+        messages,
+        next,
+        previous
+      });
+    } catch (e) {
+      // If the request fails, try again in 1 second
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      await this.fetchMessages(url);
+    }
   }
 
   async previous() {
-    try {
-      await this.fetchMessages(this.state.previous);
-      this.props.router.push(`/messages/${parseInt(this.props.params.page, 10) - 1}`);
-        isLoading: false,
-    } catch (e) {
-      window.alert('Failed fetching messages');
-    }
+    await this.fetchMessages(this.state.previous);
+    this.props.router.push(`/messages/${parseInt(this.props.params.page, 10) - 1}`);
   }
 
   async next() {
-    try {
-      await this.fetchMessages(this.state.next);
-      this.props.router.push(`/messages/${parseInt(this.props.params.page, 10) + 1}`);
-    } catch (e) {
-      window.alert('Failed fetching messages');
-    }
+    await this.fetchMessages(this.state.next);
+    this.props.router.push(`/messages/${parseInt(this.props.params.page, 10) + 1}`);
   }
 
   render() {
@@ -87,6 +87,7 @@ class Messages extends React.Component {
 
     return (
       <div>
+      <div id="messages">
         <div className="container">
           <div className="field is-grouped">
             <div className="control">
