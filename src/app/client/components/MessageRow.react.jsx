@@ -13,6 +13,7 @@ class MessageRow extends React.Component {
   constructor(props) {
     super(props);
 
+    this.details = this.details.bind(this);
     this.remove = this.remove.bind(this);
   }
 
@@ -26,6 +27,10 @@ class MessageRow extends React.Component {
   }
 
   render() {
+    const messageStyle = {
+      width: '100%'
+    };
+
     const deleteStyle = {
       textAlign: 'right'
     };
@@ -33,7 +38,7 @@ class MessageRow extends React.Component {
     return (
       <tr>
         <td>{this.props.message.id}</td>
-        <td>{this.props.message.text}</td>
+        <td style={messageStyle}>{this.props.message.text}</td>
         <td>{moment(this.props.message.created_at).format('DD/MM/YY h:mm')}</td>
         <td style={deleteStyle}>
           <div className="field is-grouped">

@@ -125,7 +125,7 @@ class Messages extends React.Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {this.state.messages.map(message => <MessageRow key={message.id} message={message} />)}
+                  {this.state.messages.map(message => <MessageRow key={message.id} router={this.props.router} message={message} />)}
                 </tbody>
               </table>
 
