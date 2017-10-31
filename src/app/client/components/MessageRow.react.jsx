@@ -16,6 +16,10 @@ class MessageRow extends React.Component {
     this.remove = this.remove.bind(this);
   }
 
+  details() {
+    this.props.router.push(`/details/${this.props.message.id}`);
+  }
+
   async remove() {
     await axios.delete(`/messages/${this.props.message.id}/`);
     window.location.reload();
@@ -32,7 +36,18 @@ class MessageRow extends React.Component {
         <td>{this.props.message.text}</td>
         <td>{moment(this.props.message.created_at).format('DD/MM/YY h:mm')}</td>
         <td style={deleteStyle}>
-          <button className="button is-small is-danger" onClick={this.remove}>Remove</button>
+          <div className="field is-grouped">
+            <div className="control">
+              <button className="button is-small" onClick={this.details}>
+                Details
+              </button>
+            </div>
+            <div className="control">
+              <button className="button is-small is-danger" onClick={this.remove}>
+                Remove
+              </button>
+            </div>
+          </div>
         </td>
       </tr>
     );
@@ -44,7 +59,8 @@ MessageRow.propTypes = {
     id: PropTypes.number,
     text: PropTypes.string,
     created_at: PropTypes.string
-  }).isRequired
+  }).isRequired,
+  router: PropTypes.any.isRequired
 };
 
 export default MessageRow;
