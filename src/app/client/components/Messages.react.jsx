@@ -86,6 +86,10 @@ class Messages extends React.Component {
       width: '100%'
     };
 
+    const createdStyle = {
+      minWidth: '150px'
+    };
+
     return (
       <div id="messages">
         <div className="container">
@@ -116,7 +120,7 @@ class Messages extends React.Component {
                   <tr>
                     <th>ID</th>
                     <th>Text</th>
-                    <th>Created</th>
+                    <th style={createdStyle}>Created</th>
                     <th />
                   </tr>
                 </thead>
