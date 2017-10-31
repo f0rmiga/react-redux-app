@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import NProgress from 'nprogress';
 import Axios from 'axios';
 import config from '../../../../app.config';
 
@@ -13,6 +14,10 @@ const axios = Axios.create({
 class Messages extends React.Component {
   constructor(props) {
     super(props);
+
+    NProgress.configure({
+      showSpinner: false
+    });
 
     this.state = {
       isLoading: false,
@@ -31,6 +36,11 @@ class Messages extends React.Component {
       await this.fetchMessages();
     } catch (e) {
       window.alert('Failed fetching messages');
+  componentWillUpdate(nextProps, nextState) {
+    if (nextState.isLoading) {
+      NProgress.start();
+    } else {
+      NProgress.done();
     }
   }
 
