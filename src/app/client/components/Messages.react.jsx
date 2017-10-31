@@ -25,8 +25,12 @@ class Messages extends React.Component {
     this.next = this.next.bind(this);
   }
 
-  componentDidMount() {
-    this.fetchMessages();
+  async componentDidMount() {
+    try {
+      await this.fetchMessages();
+    } catch (e) {
+      window.alert('Failed fetching messages');
+    }
   }
 
   async fetchMessages(url) {
@@ -45,14 +49,22 @@ class Messages extends React.Component {
     });
   }
 
-  previous() {
-    this.fetchMessages(this.state.previous);
-    this.props.router.push(`/messages/${parseInt(this.props.params.page, 10) - 1}`);
+  async previous() {
+    try {
+      await this.fetchMessages(this.state.previous);
+      this.props.router.push(`/messages/${parseInt(this.props.params.page, 10) - 1}`);
+    } catch (e) {
+      window.alert('Failed fetching messages');
+    }
   }
 
-  next() {
-    this.fetchMessages(this.state.next);
-    this.props.router.push(`/messages/${parseInt(this.props.params.page, 10) + 1}`);
+  async next() {
+    try {
+      await this.fetchMessages(this.state.next);
+      this.props.router.push(`/messages/${parseInt(this.props.params.page, 10) + 1}`);
+    } catch (e) {
+      window.alert('Failed fetching messages');
+    }
   }
 
   render() {
