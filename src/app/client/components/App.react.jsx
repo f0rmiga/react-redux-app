@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Menu from './Menu.react.jsx';
+import NavBar from './NavBar.react.jsx';
 
 function App(props) {
   return (
     <div>
-      <Menu />
+      <NavBar />
 
       {props.children}
     </div>
