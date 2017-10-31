@@ -15,6 +15,7 @@
     "lodash.get": "^4.4.2",
     "moment": "^2.19.1",
     "node-sass": "^4.5.3",
+    "nprogress": "^0.2.0",
     "path": "^0.12.7",
     "path-to-regexp": "1.7.0",
     "prop-types": "^15.6.0",
