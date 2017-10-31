@@ -15,6 +15,7 @@ class Messages extends React.Component {
     super(props);
 
     this.state = {
+      isLoading: false,
       messages: [],
       current: `/messages/?format=json&page=${props.params.page}`,
       previous: null,
@@ -46,6 +47,7 @@ class Messages extends React.Component {
       messages,
       next,
       previous
+      isLoading: true
     });
   }
 
@@ -53,6 +55,7 @@ class Messages extends React.Component {
     try {
       await this.fetchMessages(this.state.previous);
       this.props.router.push(`/messages/${parseInt(this.props.params.page, 10) - 1}`);
+        isLoading: false,
     } catch (e) {
       window.alert('Failed fetching messages');
     }
