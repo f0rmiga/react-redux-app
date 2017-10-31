@@ -14,7 +14,8 @@ import { Provider } from 'react-redux';
 import { combineReducers, compose, createStore } from 'redux';
 import logger from 'redux-logger';
 
-import 'bulma/css/bulma.css';
+// Import CSS dependencies
+import './global.css';
 
 import routeConfig from '../routeConfig.jsx';
 
