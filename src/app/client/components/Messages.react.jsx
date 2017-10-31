@@ -4,6 +4,7 @@ import NProgress from 'nprogress';
 import Axios from 'axios';
 import config from '../../../../app.config';
 
+import Spinner from './Spinner/Spinner.react.jsx';
 import MessageRow from './MessageRow.react.jsx';
 
 const axios = Axios.create({
@@ -86,34 +87,47 @@ class Messages extends React.Component {
     };
 
     return (
-      <div>
       <div id="messages">
         <div className="container">
-          <div className="field is-grouped">
-            <div className="control">
-              <button className="button" onClick={this.previous} disabled={!this.state.previous}>
-                Previous
-              </button>
+
+          {this.state.isLoading ? (
+
+            <Spinner />
+
+          ) : (
+
+            <div>
+
+              <div className="field is-grouped">
+                <div className="control">
+                  <button className="button" onClick={this.previous} disabled={!this.state.previous}>
+                    Previous
+                  </button>
+                </div>
+                <div className="control">
+                  <button className="button" onClick={this.next} disabled={!this.state.next}>
+                    Next
+                  </button>
+                </div>
+              </div>
+
+              <table style={tableStyle} className="table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Text</th>
+                    <th>Created</th>
+                    <th />
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.state.messages.map(message => <MessageRow key={message.id} message={message} />)}
+                </tbody>
+              </table>
+
             </div>
-            <div className="control">
-              <button className="button" onClick={this.next} disabled={!this.state.next}>
-                Next
-              </button>
-            </div>
-          </div>
-          <table style={tableStyle} className="table">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Text</th>
-                <th>Created</th>
-                <th />
-              </tr>
-            </thead>
-            <tbody>
-              {this.state.messages.map(message => <MessageRow key={message.id} message={message} />)}
-            </tbody>
-          </table>
+
+          )}
         </div>
       </div>
     );
