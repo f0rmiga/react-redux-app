@@ -91,48 +91,46 @@ class Messages extends React.Component {
     };
 
     return (
-      <div id="messages">
-        <div className="container">
+      <div className="container">
 
-          {this.state.isLoading ? (
+        {this.state.isLoading ? (
 
-            <Spinner />
+          <Spinner />
 
-          ) : (
+        ) : (
 
-            <div>
+          <div>
 
-              <div className="field is-grouped">
-                <div className="control">
-                  <button className="button" onClick={this.previous} disabled={!this.state.previous}>
-                    Previous
-                  </button>
-                </div>
-                <div className="control">
-                  <button className="button" onClick={this.next} disabled={!this.state.next}>
-                    Next
-                  </button>
-                </div>
+            <div className="field is-grouped">
+              <div className="control">
+                <button className="button" onClick={this.previous} disabled={!this.state.previous}>
+                  Previous
+                </button>
               </div>
-
-              <table style={tableStyle} className="table">
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Text</th>
-                    <th style={createdStyle}>Created</th>
-                    <th />
-                  </tr>
-                </thead>
-                <tbody>
-                  {this.state.messages.map(message => <MessageRow key={message.id} router={this.props.router} message={message} />)}
-                </tbody>
-              </table>
-
+              <div className="control">
+                <button className="button" onClick={this.next} disabled={!this.state.next}>
+                  Next
+                </button>
+              </div>
             </div>
 
-          )}
-        </div>
+            <table style={tableStyle} className="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Text</th>
+                  <th style={createdStyle}>Created</th>
+                  <th />
+                </tr>
+              </thead>
+              <tbody>
+                {this.state.messages.map(message => <MessageRow key={message.id} router={this.props.router} message={message} />)}
+              </tbody>
+            </table>
+
+          </div>
+
+        )}
       </div>
     );
   }
